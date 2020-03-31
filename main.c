@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-// ´æ´¢Ñ§Éú³É¼¨µÄÊı¾İ½á¹¹
+// å­˜å‚¨å­¦ç”Ÿæˆç»©çš„æ•°æ®ç»“æ„
 typedef struct student{
 	char name[20];
 	char stuId[14];
@@ -14,19 +14,19 @@ typedef struct student{
 }Student;
 
 typedef Student ElemType;
-// Á´±í½áµã
+// é“¾è¡¨ç»“ç‚¹
 typedef struct node{
 	ElemType data;
 	struct node *next;
 }ListNode;
 
-// ´´½¨Á´±í
+// åˆ›å»ºé“¾è¡¨
 ListNode *creatList()
 {
 	ListNode *head = (ListNode*)calloc(1, sizeof(ListNode));
 	return head;
 }
-// ´´½¨½áµã
+// åˆ›å»ºç»“ç‚¹
 ListNode *creatNode(ElemType data)
 {
 	ListNode *newNode = (ListNode*)calloc(1, sizeof(ListNode));
@@ -41,22 +41,22 @@ ListNode *creatNode(ElemType data)
 	return newNode;
 }
 
-// ²åÈë½áµã
+// æ’å…¥ç»“ç‚¹
 void insertNode(ListNode *head, ElemType data)
 {
 	ListNode *p = creatNode(data);
 	p->next = head->next;
 	head->next = p;
-	++(head->data.totalScore); // ´æ´¢×ÜÈËÊı
+	++(head->data.totalScore); // å­˜å‚¨æ€»äººæ•°
 }
 
-// É¾³ı½áµã
+// åˆ é™¤ç»“ç‚¹
 void deleteNode(ListNode *head, char *name)
 {
 	ListNode *pre = head, *p = head->next;
 	if(p == NULL)
 	{
-		printf("ÔİÎ´Â¼ÈëÑ§ÉúĞÅÏ¢£¬É¾³ıÊ§°Ü£¡");
+		printf("æš‚æœªå½•å…¥å­¦ç”Ÿä¿¡æ¯ï¼Œåˆ é™¤å¤±è´¥ï¼\n");
 		return;
 	}
 	while(p && strcmp(p->data.name, name) != 0)
@@ -66,7 +66,7 @@ void deleteNode(ListNode *head, char *name)
 	}
 	if(p == NULL)
 	{
-		printf("Î´ÕÒµ½¸ÃÑ§ÉúĞÅÏ¢£¬É¾³ıÊ§°Ü£¡");
+		printf("æœªæ‰¾åˆ°è¯¥å­¦ç”Ÿä¿¡æ¯ï¼Œåˆ é™¤å¤±è´¥ï¼\n");
 		return;
 	}
 	pre->next = p->next;
@@ -74,7 +74,7 @@ void deleteNode(ListNode *head, char *name)
 	free(p);
 }
 
-// ²éÕÒ½áµã
+// æŸ¥æ‰¾ç»“ç‚¹
 ListNode *searchNode(ListNode *head, char *name)
 {
 	ListNode *p = head->next;
@@ -84,12 +84,12 @@ ListNode *searchNode(ListNode *head, char *name)
 	}
 	if(p == NULL)
 	{
-		printf("Î´ÕÒµ½¸ÃÑ§ÉúĞÅÏ¢£¡");
+		printf("æœªæ‰¾åˆ°è¯¥å­¦ç”Ÿä¿¡æ¯ï¼\n");
 	}
 	return p;
 }
 
-// Á´±íÅÅĞò-->°´Ñ§ºÅ
+// é“¾è¡¨æ’åº-->æŒ‰å­¦å·
 void sortListById(ListNode *head)
 {
 	ListNode *q, *tmp, *pre, *p = head->next;
@@ -110,7 +110,7 @@ void sortListById(ListNode *head)
 	}
 }
 
-// Á´±íÅÅĞò-->°´×Ü·Ö
+// é“¾è¡¨æ’åº-->æŒ‰æ€»åˆ†
 void sortListBySore(ListNode *head)
 {
 	ListNode *q, *tmp, *pre, *p = head->next;
@@ -131,26 +131,26 @@ void sortListBySore(ListNode *head)
 	}
 }
 
-// ´òÓ¡Á´±í
+// æ‰“å°é“¾è¡¨
 void printList(ListNode *head)
 {
 	ListNode *p = head->next;
 	if(p == NULL) 
 	{
-		printf("»¹Î´Â¼ÈëÑ§Éú³É¼¨\n");
+		printf("è¿˜æœªå½•å…¥å­¦ç”Ÿæˆç»©\n");
 		return;
 	}
-	printf("Ñ§ºÅ\tĞÕÃû\tÓ¢Óï\tÕşÖÎ\tÊıÑ§\t×¨Òµ¿Î\t×Ü·Ö\n");
+	printf("å­¦å·\tå§“å\tè‹±è¯­\tæ”¿æ²»\tæ•°å­¦\tä¸“ä¸šè¯¾\tæ€»åˆ†\n");
 	while(p)
 	{
 		printf("\n%s\t%s\t%d\t%d\t%d\t%d\t%d\n", p->data.stuId, p->data.name, p->data.English, p->data.politics, p->data.math, p->data.specCourse, p->data.totalScore);
 		p = p->next;
 	}
 	printf("----------------------------------------------------------\n");
-	printf("¹²¼Æ %d ÈË\n", head->data.totalScore);
+	printf("å…±è®¡ %d äºº\n", head->data.totalScore);
 }
 
-// ÎÄ¼ş¶Á²Ù×÷
+// æ–‡ä»¶è¯»æ“ä½œ
 void readInfoFromFile(ListNode *head, char *fileName)
 {
 	FILE *fp;
@@ -160,14 +160,14 @@ void readInfoFromFile(ListNode *head, char *fileName)
 	{
 		fp = fopen(fileName, "w+");
 	}
-	while(fscanf(fp, "%s\t%s\t%d\t%d\t%d\t%d\n", data.stuId, data.name, &data.English, &data.politics, &data.math, &data.specCourse) != EOF)
+	while(fscanf(fp, "%s\t%s\t%d\t%d\t%d\t%d\t%d\n", data.stuId, data.name, &data.English, &data.politics, &data.math, &data.specCourse, &data.totalScore) != EOF)
 	{
 		insertNode(head, data);
 	}
 	fclose(fp);
 }
 
-// ÎÄ¼şĞ´²Ù×÷
+// æ–‡ä»¶å†™æ“ä½œ
 void writeInfoToFile(ListNode *head, char *fileName)
 {
 	FILE *fp;
@@ -175,32 +175,32 @@ void writeInfoToFile(ListNode *head, char *fileName)
 	fp = fopen(fileName, "w");
 	while(p)
 	{
-		fprintf(fp, "%s\t%s\t%d\t%d\t%d\t%d\n", p->data.stuId, p->data.name, p->data.English, p->data.politics, p->data.math, p->data.specCourse);
+		fprintf(fp, "%s\t%s\t%d\t%d\t%d\t%d\t%d\n", p->data.stuId, p->data.name, p->data.English, p->data.politics, p->data.math, p->data.specCourse, p->data.totalScore);
 		p = p->next;
 	}
 	fclose(fp);
 }
-// ³õÊ¼½çÃæ
+// åˆå§‹ç•Œé¢
 void menu()
 {
-	printf("*********************Ñ§Éú³É¼¨¹ÜÀíÏµÍ³*********************\n\n");
-	printf("\t\t\t0.ÍË³öÏµÍ³\n\n");
-	printf("\t\t\t1.ÏÔÊ¾È«²¿\n\n");
-	printf("\t\t\t2.Ìí¼Ó³É¼¨\n\n");
-	printf("\t\t\t3.É¾³ı³É¼¨\n\n");
-	printf("\t\t\t4.ĞŞ¸Ä³É¼¨\n\n");
-	printf("\t\t\t5.²éÕÒ³É¼¨\n\n");
+	printf("*********************å­¦ç”Ÿæˆç»©ç®¡ç†ç³»ç»Ÿ*********************\n\n");
+	printf("\t\t\t0.é€€å‡ºç³»ç»Ÿ\n\n");
+	printf("\t\t\t1.æ˜¾ç¤ºå…¨éƒ¨\n\n");
+	printf("\t\t\t2.æ·»åŠ æˆç»©\n\n");
+	printf("\t\t\t3.åˆ é™¤æˆç»©\n\n");
+	printf("\t\t\t4.ä¿®æ”¹æˆç»©\n\n");
+	printf("\t\t\t5.æŸ¥æ‰¾æˆç»©\n\n");
 	printf("**********************************************************\n");
 }
 
-// °´¼ü²Ù×÷ 0 - 5
+// æŒ‰é”®æ“ä½œ 0 - 5
 void keyDown(ListNode *head)
 {
 	int flag = 1, op, sortOp;
 	char name[20] = {0};
 	ElemType stu;
 	ListNode *p;
-	printf("ÇëÊäÈëÒªÖ´ĞĞµÄ²Ù×÷£¨0 - 5£©£º");
+	printf("è¯·è¾“å…¥è¦æ‰§è¡Œçš„æ“ä½œï¼ˆ0 - 5ï¼‰ï¼š");
 	scanf("%d", &op);
 	switch (op)
 	{
@@ -208,10 +208,10 @@ void keyDown(ListNode *head)
 		exit(0);
 		break;
 	case 1:
-		printf("*************************ÏÔÊ¾È«²¿*************************\n");
+		printf("*************************æ˜¾ç¤ºå…¨éƒ¨*************************\n");
 		while(flag)
 		{
-			printf("ÇëÊäÈë£¨1.°´Ñ§ºÅÅÅĞò 2.°´×Ü·ÖÅÅĞò 3.ÆäËû£©£º");
+			printf("è¯·è¾“å…¥ï¼ˆ1.æŒ‰å­¦å·æ’åº 2.æŒ‰æ€»åˆ†æ’åº 3.å…¶ä»–ï¼‰ï¼š");
 			scanf("%d", &sortOp);
 			printf("**********************************************************\n");
 			if(sortOp == 1)
@@ -220,125 +220,126 @@ void keyDown(ListNode *head)
 				sortListBySore(head);
 			printList(head);
 			printf("----------------------------------------------------------\n");
-			printf("ÇëÊäÈë£¨0.»Øµ½Ö÷½çÃæ 1.¼ÌĞø²é¿´£©£º");
+			printf("è¯·è¾“å…¥ï¼ˆ0.å›åˆ°ä¸»ç•Œé¢ 1.ç»§ç»­æŸ¥çœ‹ï¼‰ï¼š");
 			scanf("%d", &flag);
 			while(flag != 1 && flag != 0)
 			{
-				printf("ÊäÈë²»ºÏ·¨£¬ÇëÖØĞÂÊäÈë£º");
+				printf("è¾“å…¥ä¸åˆæ³•ï¼Œè¯·é‡æ–°è¾“å…¥ï¼š");
 				scanf("%d", &flag);
 			}
 			printf("----------------------------------------------------------\n");
 		}
 		break;
 	case 2:
-		printf("*************************Ìí¼Ó³É¼¨*************************\n");
+		printf("*************************æ·»åŠ æˆç»©*************************\n");
 		while(flag)
 		{
-			printf("ÇëÊäÈëÑ§ÉúÑ§ºÅ£º");
+			printf("è¯·è¾“å…¥å­¦ç”Ÿå­¦å·ï¼š");
 			fflush(stdin);
 			scanf("%s", stu.stuId);
-			printf("ÇëÊäÈëÑ§ÉúĞÕÃû£º");
+			printf("è¯·è¾“å…¥å­¦ç”Ÿå§“åï¼š");
 			fflush(stdin);
 			scanf("%s", stu.name);
-			printf("ÇëÊäÈëÓ¢Óï³É¼¨£º");
+			printf("è¯·è¾“å…¥è‹±è¯­æˆç»©ï¼š");
 			scanf("%d", &(stu.English));
-			printf("ÇëÊäÈëÕşÖÎ³É¼¨£º");
+			printf("è¯·è¾“å…¥æ”¿æ²»æˆç»©ï¼š");
 			scanf("%d", &(stu.politics));
-			printf("ÇëÊäÈëÊıÑ§³É¼¨£º");
+			printf("è¯·è¾“å…¥æ•°å­¦æˆç»©ï¼š");
 			scanf("%d", &(stu.math));
-			printf("ÇëÊäÈë×¨Òµ³É¼¨£º");
+			printf("è¯·è¾“å…¥ä¸“ä¸šæˆç»©ï¼š");
 			scanf("%d", &(stu.specCourse));
 			stu.totalScore = stu.English + stu.math + stu.politics + stu.specCourse;
 			insertNode(head, stu);
 			printf("----------------------------------------------------------\n");
-			printf("ÇëÊäÈë£¨0.Ìí¼Ó½áÊø 1.¼ÌĞøÌí¼Ó£©£º");
+			printf("è¯·è¾“å…¥ï¼ˆ0.æ·»åŠ ç»“æŸ 1.ç»§ç»­æ·»åŠ ï¼‰ï¼š");
 			scanf("%d", &flag);
 			while(flag != 1 && flag != 0)
 			{
-				printf("ÊäÈë²»ºÏ·¨£¬ÇëÖØĞÂÊäÈë£º");
+				printf("è¾“å…¥ä¸åˆæ³•ï¼Œè¯·é‡æ–°è¾“å…¥ï¼š");
 				scanf("%d", &flag);
 			}
 			printf("----------------------------------------------------------\n");
 		}
-		printf("Ìí¼Ó³É¹¦!\n");
+		printf("æ·»åŠ æˆåŠŸ!\n");
 		printf("----------------------------------------------------------\n");
 		break;
 	case 3:
-		printf("*************************É¾³ı³É¼¨*************************\n");
+		printf("*************************åˆ é™¤æˆç»©*************************\n");
 		while(flag)
 		{
-			printf("ÇëÊäÈëÒªÉ¾³ıµÄÑ§ÉúĞÕÃû£º");
+			printf("è¯·è¾“å…¥è¦åˆ é™¤çš„å­¦ç”Ÿå§“åï¼š");
 			scanf("%s", &name);
 			deleteNode(head, name);
 			printf("----------------------------------------------------------\n");
-			printf("ÇëÊäÈë£¨0.É¾³ı½áÊø 1.¼ÌĞøÉ¾³ı£©£º");
+			printf("è¯·è¾“å…¥ï¼ˆ0.åˆ é™¤ç»“æŸ 1.ç»§ç»­åˆ é™¤ï¼‰ï¼š");
 			scanf("%d", &flag);
 			while(flag != 1 && flag != 0)
 			{
-				printf("ÊäÈë²»ºÏ·¨£¬ÇëÖØĞÂÊäÈë£º");
+				printf("è¾“å…¥ä¸åˆæ³•ï¼Œè¯·é‡æ–°è¾“å…¥ï¼š");
 				scanf("%d", &flag);
 			}
 			printf("----------------------------------------------------------\n");
 		}
-		printf("É¾³ı³É¹¦!\n");
+		printf("åˆ é™¤æˆåŠŸ!\n");
 		printf("----------------------------------------------------------\n");
 		break;
 	case 4:
-		printf("*************************ĞŞ¸Ä³É¼¨*************************\n");
+		printf("*************************ä¿®æ”¹æˆç»©*************************\n");
 		while(flag)
 		{
-			printf("ÇëÊäÈëÒªĞŞ¸ÄµÄÑ§ÉúĞÕÃû£º");
+			printf("è¯·è¾“å…¥è¦ä¿®æ”¹çš„å­¦ç”Ÿå§“åï¼š");
 			fflush(stdin);
 			scanf("%s", &name);
 			p = searchNode(head, name);
 			if(p)
 			{
-				printf("ÇëÊäÈëĞŞ¸ÄºóµÄÓ¢Óï³É¼¨£¨²»ĞŞ¸ÄÔòÊäÈë-1£©£º");
+				printf("è¯·è¾“å…¥ä¿®æ”¹åçš„è‹±è¯­æˆç»©ï¼ˆä¸ä¿®æ”¹åˆ™è¾“å…¥-1ï¼‰ï¼š");
 				scanf("%d", &(stu.English));
 				p->data.English = stu.English != -1 ? stu.English : p->data.English;
-				printf("ÇëÊäÈëĞŞ¸ÄºóµÄÕşÖÎ³É¼¨£¨²»ĞŞ¸ÄÔòÊäÈë-1£©£º");
+				printf("è¯·è¾“å…¥ä¿®æ”¹åçš„æ”¿æ²»æˆç»©ï¼ˆä¸ä¿®æ”¹åˆ™è¾“å…¥-1ï¼‰ï¼š");
 				scanf("%d", &(stu.politics));
 				p->data.politics = stu.politics != -1 ? stu.politics : p->data.politics;
-				printf("ÇëÊäÈëĞŞ¸ÄºóµÄÊıÑ§³É¼¨£¨²»ĞŞ¸ÄÔòÊäÈë-1£©£º");
+				printf("è¯·è¾“å…¥ä¿®æ”¹åçš„æ•°å­¦æˆç»©ï¼ˆä¸ä¿®æ”¹åˆ™è¾“å…¥-1ï¼‰ï¼š");
 				scanf("%d", &(stu.math));
 				p->data.math = stu.math != -1 ? stu.math : p->data.math;
-				printf("ÇëÊäÈëĞŞ¸ÄºóµÄ×¨Òµ³É¼¨£¨²»ĞŞ¸ÄÔòÊäÈë-1£©£º");
+				printf("è¯·è¾“å…¥ä¿®æ”¹åçš„ä¸“ä¸šæˆç»©ï¼ˆä¸ä¿®æ”¹åˆ™è¾“å…¥-1ï¼‰ï¼š");
 				scanf("%d", &(stu.specCourse));
 				p->data.specCourse = stu.specCourse != -1 ? stu.specCourse : p->data.specCourse;
 				p->data.totalScore = p->data.English + p->data.math + p->data.politics + p->data.specCourse;
 			}
 			printf("----------------------------------------------------------\n");
-			printf("ÇëÊäÈë£¨0.ĞŞ¸Ä½áÊø 1.¼ÌĞøĞŞ¸Ä£©£º");
+			printf("è¯·è¾“å…¥ï¼ˆ0.ä¿®æ”¹ç»“æŸ 1.ç»§ç»­ä¿®æ”¹ï¼‰ï¼š");
 			scanf("%d", &flag);
 			while(flag != 1 && flag != 0)
 			{
-				printf("ÊäÈë²»ºÏ·¨£¬ÇëÖØĞÂÊäÈë£º");
+				printf("è¾“å…¥ä¸åˆæ³•ï¼Œè¯·é‡æ–°è¾“å…¥ï¼š");
 				scanf("%d", &flag);
 			}
 			printf("----------------------------------------------------------\n");
 		}
-		printf("ĞŞ¸Ä³É¹¦£¡\n");
+		printf("ä¿®æ”¹æˆåŠŸï¼\n");
 		printf("----------------------------------------------------------\n");
 		break;
 	case 5:
-		printf("*************************²éÕÒ³É¼¨*************************\n");
+		printf("*************************æŸ¥æ‰¾æˆç»©*************************\n");
 		while(flag)
 		{
-			printf("ÇëÊäÈëÒª²éÕÒµÄÑ§ÉúĞÕÃû£º");
+			printf("è¯·è¾“å…¥è¦æŸ¥æ‰¾çš„å­¦ç”Ÿå§“åï¼š");
 			fflush(stdin);
 			scanf("%s", name);
+			printf("----------------------------------------------------------\n");
 			p = searchNode(head, name);
 			if(p)
 			{
-				printf("Ñ§ºÅ\tĞÕÃû\tÓ¢Óï\tÕşÖÎ\tÊıÑ§\t×¨Òµ¿Î\t×Ü·Ö\n");
+				printf("å­¦å·\tå§“å\tè‹±è¯­\tæ”¿æ²»\tæ•°å­¦\tä¸“ä¸šè¯¾\tæ€»åˆ†\n");
 				printf("\n%s\t%s\t%d\t%d\t%d\t%d\t%d\n", p->data.stuId, p->data.name, p->data.English, p->data.politics, p->data.math, p->data.specCourse, p->data.totalScore);
 			}
 			printf("----------------------------------------------------------\n");
-			printf("ÇëÊäÈë£¨0.²éÕÒ½áÊø 1.¼ÌĞø²éÕÒ£©£º");
+			printf("è¯·è¾“å…¥ï¼ˆ0.æŸ¥æ‰¾ç»“æŸ 1.ç»§ç»­æŸ¥æ‰¾ï¼‰ï¼š");
 			scanf("%d", &flag);
 			while(flag != 1 && flag != 0)
 			{
-				printf("ÊäÈë²»ºÏ·¨£¬ÇëÖØĞÂÊäÈë£º");
+				printf("è¾“å…¥ä¸åˆæ³•ï¼Œè¯·é‡æ–°è¾“å…¥ï¼š");
 				scanf("%d", &flag);
 			}
 			printf("----------------------------------------------------------\n");
@@ -346,7 +347,7 @@ void keyDown(ListNode *head)
 		break;
 	default:
 		printf("----------------------------------------------------------\n");
-		printf("ÊäÈë´íÎó£¬ÇëÖØĞÂÊäÈë£¡\n");
+		printf("è¾“å…¥é”™è¯¯ï¼Œè¯·é‡æ–°è¾“å…¥ï¼\n");
 		printf("----------------------------------------------------------\n");
 		system("pause");
 		break;
@@ -356,14 +357,14 @@ void keyDown(ListNode *head)
 
 void main()
 {
-	// ´´½¨¿Õ°×Ñ§Éú±í
+	// åˆ›å»ºç©ºç™½å­¦ç”Ÿè¡¨
 	ListNode *head = creatList();
 	readInfoFromFile(head, "student.text");
 	while(1)
 	{
-		// ´òÓ¡Ö÷½çÃæ
+		// æ‰“å°ä¸»ç•Œé¢
 		menu();
-		// ÓÃ»§½»»¥
+		// ç”¨æˆ·äº¤äº’
 		keyDown(head);
 		system("pause");
 		system("cls");
