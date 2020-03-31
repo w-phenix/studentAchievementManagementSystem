@@ -150,7 +150,6 @@ void printList(ListNode *head)
 	printf("共计 %d 人\n", head->data.totalScore);
 }
 
-// 文件读操作
 void readInfoFromFile(ListNode *head, char *fileName)
 {
 	FILE *fp;
@@ -160,8 +159,9 @@ void readInfoFromFile(ListNode *head, char *fileName)
 	{
 		fp = fopen(fileName, "w+");
 	}
-	while(fscanf(fp, "%s\t%s\t%d\t%d\t%d\t%d\t%d\n", data.stuId, data.name, &data.English, &data.politics, &data.math, &data.specCourse, &data.totalScore) != EOF)
+	while(fscanf(fp, "%s\t%s\t%d\t%d\t%d\t%d\n", data.stuId, data.name, &data.English, &data.politics, &data.math, &data.specCourse) != EOF)
 	{
+		data.totalScore = data.English + data.math + data.politics + data.specCourse;
 		insertNode(head, data);
 	}
 	fclose(fp);
@@ -175,7 +175,7 @@ void writeInfoToFile(ListNode *head, char *fileName)
 	fp = fopen(fileName, "w");
 	while(p)
 	{
-		fprintf(fp, "%s\t%s\t%d\t%d\t%d\t%d\t%d\n", p->data.stuId, p->data.name, p->data.English, p->data.politics, p->data.math, p->data.specCourse, p->data.totalScore);
+		fprintf(fp, "%s\t%s\t%d\t%d\t%d\t%d\n", p->data.stuId, p->data.name, p->data.English, p->data.politics, p->data.math, p->data.specCourse);
 		p = p->next;
 	}
 	fclose(fp);
