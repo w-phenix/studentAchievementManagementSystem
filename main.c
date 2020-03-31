@@ -41,7 +41,7 @@ ListNode *creatNode(ElemType data)
 	return newNode;
 }
 
-// 插入结点
+// 插入结点-->头插法
 void insertNode(ListNode *head, ElemType data)
 {
 	ListNode *p = creatNode(data);
@@ -137,7 +137,7 @@ void printList(ListNode *head)
 	ListNode *p = head->next;
 	if(p == NULL) 
 	{
-		printf("还未录入学生成绩\n");
+		printf("还未录入学生成绩！\n");
 		return;
 	}
 	printf("学号\t姓名\t英语\t政治\t数学\t专业课\t总分\n");
@@ -150,6 +150,7 @@ void printList(ListNode *head)
 	printf("共计 %d 人\n", head->data.totalScore);
 }
 
+// 文件读操作
 void readInfoFromFile(ListNode *head, char *fileName)
 {
 	FILE *fp;
