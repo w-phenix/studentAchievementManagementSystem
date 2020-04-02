@@ -6,3 +6,5 @@
 3.显示全部时可以选择按总分排序和按成绩排序
 
 4.可以从文件中读取学生数据，也能将学生数据写入文件中
+
+![image](https://github.com/w-phenix/studentAchievementManagementSystem/blob/master/%E6%95%88%E6%9E%9C%E5%9B%BE/%E6%98%BE%E7%A4%BA%E5%85%A8%E9%83%A8.png)
